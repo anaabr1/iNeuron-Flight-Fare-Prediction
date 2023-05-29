@@ -1,10 +1,12 @@
 import pickle
 import numpy as np
 import pandas as pd
+import sklearn
 from flask import Flask, request, render_template
 
 app = Flask(__name__, template_folder='template')
 model = pickle.load(open("flight_predict.pkl", "rb"))
+
 
 @app.route("/")
 def home():
@@ -315,4 +317,5 @@ def predict():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.debug = True
+    app.run(host='0.0.0.0', port=8080)
